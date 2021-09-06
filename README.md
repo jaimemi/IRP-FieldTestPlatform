@@ -14,11 +14,12 @@ If any quesiton, drop your query at the "Issues" section!
 ## 2. Units Logic
 ### 2.1. Climate, SC and ECD Unit
 1. Once the Unit is plugged into the battery, it goes into `SETUP` mode. In `SETUP`, all the sensors, pheripherals (except SD and CAN Modules), and IO Pins are initialised.
-2. If the switch is toggled, the unit asks for toggling the switch back. Once the switch is toggled, the unit goes into `SLEEP` mode, which means the SD can be extracted safetly.
+2. If the switch is toggled, the unit asks for toggling the switch back. Once the switch is toggled, the unit goes into `SLEEP` mode, which means the SD can be extracted safely.
 3. Once the switch is toggled, the unit goes into `INITIALISATION` mode. Here, the SD and CAN Modules are initialised. In addition, an alarm is set every period of time stablished by the user (10s by default).
 4. The unit asks the current time and date to the WiFi Unit by CAN. Once received, it goes into `READING` mode.
-5. Once the alarm is triggered every period of time (10s by default), the unit reads all the sensors, stores the information into the SD Card and send it over CAN.
-6. If an error occurs while initialisation or writing into the SD card or RTC, the unit goes into `ERROR` mode and must be restarted.
+5. The unit can go at any time into `SLEEP` mode by toggling the switch. The SD cart can be then extracted safely.
+6. Once the alarm is triggered every period of time (10s by default), the unit reads all the sensors, stores the information into the SD Card and send it over CAN.
+7. If an error occurs while initialisation or writing into the SD card or RTC, the unit goes into `ERROR` mode and must be restarted.
 
 ![ClimateUnitLogic](https://user-images.githubusercontent.com/42868962/132248611-a8fe3be6-e839-43cb-9d25-37b08ed77b5e.png)
 
