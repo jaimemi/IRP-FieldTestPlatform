@@ -39,7 +39,7 @@ Just import the `.ino` file into the Arduino IDE and download the required libra
 3. Import the library `Arduino_ConnectionHandler.zip` available at the folder "Custom Libraries" into the Arduino IDE
 4. Fill the SSID, USER and PASWORD fields at `arduino_sectrets.h` on the Arduino IDE.
 
-## 3.3. CAN bus
+### 3.3. CAN bus
 - The WiFi unit uses the CAN library available at [this repository](https://github.com/sandeepmistry/arduino-CAN)
 - The SC, ECD and Climate Units use the CAN library availbale at [this repository](https://github.com/Seeed-Studio/Seeed_Arduino_CAN)
 
@@ -62,4 +62,63 @@ Each pheripheral has associated an error ID. In case such pheripheral does not w
 | Write         | RV3028Set()           | ERROR_ID_RV3028_WRITE   | 21        |
 | Write         | SDCardWrite()         | ERROR_ID_SD_WRITE       | 25        |
 
+## 5. CAN IDs
+Each measurement has associated a CAN address or ID. If the CAN message contains a measurement from a sensor, the Cloud variable associated to it changes its value. Then, the measurement can be seen from the Cloud.
 
+| Unit    | Sensor   | Measurement                              | ID Number | Cloud variable     |
+|---------|----------|------------------------------------------|-----------|--------------------|
+| ALL     | REV3028  | Ask about time and date                  | 0x0000FF  | -                  |
+| Climate | BMP280   | Temperature                              | 0x000100  | temp_ws            |
+| Climate | BMP280   | Pressure                                 | 0x000101  | pres_ws            |
+| Climate | BMP280   | Altitude                                 | 0x000102  | alt_ws             |
+| Climate | AS7341   | Channel 415 nm                           | 0x000110  | counts_ws_415nm_F1 |
+| Climate | AS7341   | Channel 445 nm                           | 0x000111  | counts_ws_445nm_F1 |
+| Climate | AS7341   | Channel 480 nm                           | 0x000112  | counts_ws_480nm_F1 |
+| Climate | AS7341   | Channel 515 nm                           | 0x000113  | counts_ws_515nm_F1 |
+| Climate | AS7341   | Channel 555 nm                           | 0x000114  | counts_ws_555nm_F1 |
+| Climate | AS7341   | Channel 590 nm                           | 0x000115  | counts_ws_590nm_F1 |
+| Climate | AS7341   | Channel 630 nm                           | 0x000116  | counts_ws_630nm_F1 |
+| Climate | AS7341   | Channel 680 nm                           | 0x000117  | counts_ws_680nm_F1 |
+| Climate | AS7341   | Channel CLEAR                            | 0x000118  | counts_ws_CLEAR    |
+| Climate | AS7341   | Channel NIR                              | 0x000119  | counts_ws_NIR      |
+| SC      | MAX31855 | Amplifier Temp. (Right-Top-w\ SC)        | 0x000200  | temp_pv_int_rtf    |
+| SC      | MAX31855 | Thermocouple Temp. (Right-Top-w\ SC)     | 0x000201  | temp_pv_k_rtf      |
+| SC      | MAX31855 | Amplifier Temp. (Left-Top-w\ SC)         | 0x000210  | temp_pv_int_ltf    |
+| SC      | MAX31855 | Thermocouple Temp. (Left-Top-w\ SC)      | 0x000211  | temp_pv_k_ltf      |
+| SC      | MAX31855 | Amplifier Temp. (Right-Bottom-w\ SC)     | 0x000220  | temp_pv_int_rbf    |
+| SC      | MAX31855 | Thermocouple Temp. (Right-Bottom-w\ SC)  | 0x000221  | temp_pv_k_rbf      |
+| SC      | MAX31855 | Amplifier Temp. (Left-Bottom-w\ SC)      | 0x000230  | temp_pv_int_lbf    |
+| SC      | MAX31855 | Thermocouple Temp. (Left-Bottom-w\ SC)   | 0x000231  | temp_pv_k_lbf      |
+| SC      | MAX31855 | Amplifier Temp. (Right-Top-w\o SC)       | 0x000240  | temp_pv_int_rtnf   |
+| SC      | MAX31855 | Thermocouple Temp. (Right-Top-w\o SC)    | 0x000241  | temp_pv_k_rtnf     |
+| SC      | MAX31855 | Amplifier Temp. (Left-Top-w\o SC)        | 0x000250  | temp_pv_int_ltnf   |
+| SC      | MAX31855 | Thermocouple Temp. (Left-Top-w\o SC)     | 0x000251  | temp_pv_k_ltnf     |
+| SC      | MAX31855 | Amplifier Temp. (Right-Bottom-w\o SC)    | 0x000260  | temp_pv_int_rbnf   |
+| SC      | MAX31855 | Thermocouple Temp. (Right-Bottom-w\o SC) | 0x000261  | temp_pv_k_rbnf     |
+| SC      | MAX31855 | Amplifier Temp. (Left-Bottom-w\o SC)     | 0x000270  | temp_pv_int_lbnf   |
+| SC      | MAX31855 | Thermocouple Temp. (Left-Bottom-w\o SC)  | 0x000271  | temp_pv_k_lbnf     |
+| SC      | INA260   | Current (w\ SC)                          | 0x000280  | i_pv_f             |
+| SC      | INA260   | Voltage (w\ SC)                          | 0x000281  | v_pv_f             |
+| SC      | INA260   | Power (w\ SC)                            | 0x000282  | p_pv_f             |
+| SC      | INA260   | Current (w\o SC)                         | 0x000290  | i_pv_nf            |
+| SC      | INA260   | Voltage (w\o SC)                         | 0x000291  | v_pv_nf            |
+| SC      | INA260   | Power (w\o SC)                           | 0x000292  | p_pv_nf            |
+| ECD     | MAX31855 | Amplifier Temp. (1)                      | 0x000300  | temp_ec_int_1      |
+| ECD     | MAX31855 | Thermocouple Temp. (1)                   | 0x000301  | temp_ec_k_1        |
+| ECD     | MAX31855 | Amplifier Temp. (2)                      | 0x000310  | temp_ec_int_2      |
+| ECD     | MAX31855 | Thermocouple Temp. (2)                   | 0x000311  | temp_ec_k_2        |
+| ECD     | MAX31855 | Amplifier Temp. (3)                      | 0x000320  | temp_ec_int_3      |
+| ECD     | MAX31855 | Thermocouple Temp. (3)                   | 0x000321  | temp_ec_k_3        |
+| ECD     | INA260   | Current                                  | 0x000380  | i_ec               |
+| ECD     | INA260   | Voltage                                  | 0x000381  | v_ec               |
+| ECD     | INA260   | Power                                    | 0x000382  | p_ec               |
+| ECD     | AS7341   | Channel 415 nm                           | 0x000390  | counts_ec_415nm_F1 |
+| ECD     | AS7341   | Channel 445 nm                           | 0x000391  | counts_ec_445nm_F1 |
+| ECD     | AS7341   | Channel 480 nm                           | 0x000392  | counts_ec_480nm_F1 |
+| ECD     | AS7341   | Channel 515 nm                           | 0x000393  | counts_ec_515nm_F1 |
+| ECD     | AS7341   | Channel 555 nm                           | 0x000394  | counts_ec_555nm_F1 |
+| ECD     | AS7341   | Channel 590 nm                           | 0x000395  | counts_ec_590nm_F1 |
+| ECD     | AS7341   | Channel 630 nm                           | 0x000396  | counts_ec_630nm_F1 |
+| ECD     | AS7341   | Channel 680 nm                           | 0x000397  | counts_ec_680nm_F1 |
+| ECD     | AS7341   | Channel CLEAR                            | 0x000398  | counts_ec_CLEAR    |
+| ECD     | AS7341   | Channel NIR                              | 0x000399  | counts_ec_NIR      |
