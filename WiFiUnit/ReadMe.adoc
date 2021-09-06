@@ -4,5 +4,7 @@
 :Revision: version 1
 :License: Public Domain
 
-# Help
+# How to use the code
+
+1. Open 
 
