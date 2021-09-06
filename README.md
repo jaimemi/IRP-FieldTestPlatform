@@ -8,6 +8,15 @@ This repository contains all the code the Control Units from the Field Test Plat
 
 If any quesiton, drop your query at the "Issues" section!
 
+## 1. Platform General Schematic
+![GeneralSchematic](https://user-images.githubusercontent.com/42868962/132248472-2921787c-5292-4810-903e-16d5eed5d239.png)
+
+## 2. Units Logic
+### Climate, SC and ECD Unit
+1. Once the Unit is plugged into the battery, 
+![ClimateUnitLogic](https://user-images.githubusercontent.com/42868962/132248611-a8fe3be6-e839-43cb-9d25-37b08ed77b5e.png)
+
+
 ## CAN bus
 - The WiFi unit uses the CAN library available at [this repository](https://github.com/sandeepmistry/arduino-CAN)
 - The SC, ECD and Climate Units use the CAN library availbale at [this repository](https://github.com/Seeed-Studio/Seeed_Arduino_CAN)
@@ -23,7 +32,7 @@ Just import the `.ino` file into the Arduino IDE and download the required libra
 
 Alternatively, you can use the Arduino IoT Cloud Editor to open the program, it will be easier to import a Custom Library.
 
-# Error IDs LookUp Table
+## Error IDs LookUp Table
 Each pheripheral has associated an error ID. In case such pheripheral does not work as expected, the error will be shown in the LCD screen and the Arduino will fall into an infinite loop.
 
 | Function Type | Function Name         | ID Name                 | ID Number |
@@ -39,3 +48,5 @@ Each pheripheral has associated an error ID. In case such pheripheral does not w
 | Init          | Ina260Init()          | ERROR_ID_INA260_INIT    | 19        |
 | Write         | RV3028Set()           | ERROR_ID_RV3028_WRITE   | 21        |
 | Write         | SDCardWrite()         | ERROR_ID_SD_WRITE       | 25        |
+
+
